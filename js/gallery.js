@@ -65,6 +65,7 @@ const images = [
 ];
 
 const galleryEl = document.querySelector('.gallery');
+let instance;
 
 function imageTemplate({ preview, original, description }) {
   return `<li class="gallery-item">
@@ -81,11 +82,12 @@ function imageTemplate({ preview, original, description }) {
 function imagesTemplate(images) {
   return images.map(imageTemplate).join('\n');
 }
+function renderImages() {
+  const markup = imagesTemplate(images);
+  galleryEl.innerHTML = markup;
+}
 
-const markup = imagesTemplate(images);
-galleryEl.innerHTML = markup;
-
-let instance;
+renderImages();
 
 galleryEl.addEventListener('click', (e) => {
   e.preventDefault();
